@@ -3,90 +3,162 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/cv/TimeLine.astro";
 ---
 
-<BaseLayout title="Resume" sideBarActiveItemID="cv_fr">
+<BaseLayout title="CV" sideBarActiveItemID="cv_fr">
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Profile</div>
+    <div class="text-3xl w-full font-bold">Profil</div>
   </div>
 
   <div class="mb-10 text-justify">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Étudiant en <strong>Data Science</strong>, diplômé en septembre 2026, avec de solides
+    connaissances en <strong>Machine Learning</strong>, <strong>analyse statistique</strong>
+    et <strong>Computer Vision</strong>.
   </div>
 
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Education</div>
+    <div class="text-3xl w-full font-bold">Formation</div>
   </div>
 
   <div class="time-line-container grid gap-4 mb-10">
     <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
+      title="Master International en Data Science"
+      subtitle="2024 – 2026 à l'École Centrale de Lille & l'Université de Lille, France"
+    >
+      Formation conjointement organisée par <strong>Centrale Lille</strong>,
+      <strong>IMT Nord Europe</strong> et l'<strong>Université de Lille</strong>.
+    </TimeLineElement>
+
     <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
+      title="Bachelor Universitaire de Technologie (BUT) en Informatique"
+      subtitle="2021 – 2024 à l'IUT d'Amiens, France"
+    >
+      Spécialisation en <strong>Administration, Gestion et Exploitation des Données</strong>.
+    </TimeLineElement>
   </div>
 
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Experience</div>
+    <div class="text-3xl w-full font-bold">Expérience</div>
   </div>
 
   <div class="time-line-container mb-10">
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="Stagiaire en Data Science au CHU de Lille"
+      subtitle="11 mars – 28 août 2026 à l'équipe d'ingénierie en imagerie médicale, Lille, France"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      Développement d'un modèle <strong>U-Net</strong> pour segmenter les couches
+      rétiniennes sur des <strong>images OCT</strong>, incluant une comparaison avec
+      les méthodes de l'état de l'art, une évaluation clinique et le déploiement de
+      la solution.
+      <br />
+      → Obtention d'excellents résultats avec un <strong>Dice score de 0,97</strong>.
+      Une <strong>publication scientifique</strong> basée sur les travaux réalisés
+      durant le stage est actuellement en cours d'évaluation.
     </TimeLineElement>
+
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="Stagiaire en Machine Learning à l'IRCICA"
+      subtitle="Mai – août 2025 au laboratoire de recherche IRCICA, Lille, France"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      Développement d'une <strong>pipeline de people counting</strong> basée sur des
+      <strong>Vision Transformers (ViT)</strong>, incluant l'installation des caméras,
+      l'acquisition des images, le prétraitement des données, le fine-tuning et
+      l'évaluation sur des datasets multi-caméras.
+      <br />
+      → Les résultats ont révélé un <strong>manque de généralisation</strong>.
+      Un dataset plus large et plus représentatif serait nécessaire pour développer
+      un modèle <strong>plus robuste et plus fiable</strong>.
     </TimeLineElement>
+
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="Stagiaire en Machine Learning au Laboratoire des Technologies Innovantes"
+      subtitle="11 mars – 7 juin 2024 au Laboratoire des Technologies Innovantes, France"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      Développement d'un modèle de <strong>temporal forecasting</strong> utilisant des
+      <strong>Gradient-Boosted Trees</strong> afin de prédire l'évolution des
+      <strong>niveaux de CO₂</strong> à partir des informations relatives aux salles.
+      Création d'un <strong>time series model</strong>, application de
+      <strong>feature engineering</strong> et mesure de l'impact de chaque feature.
+      <br />
+      → Malgré une expérience limitée en <strong>Machine Learning</strong>, développement
+      réussi d'un <strong>modèle robuste et fiable</strong>, mettant en évidence la
+      difficulté liée aux <strong>changement de comportement</strong>.
+    </TimeLineElement>
+
+    <TimeLineElement
+      title="Stagiaire en développement logiciel chez Orange Business"
+      subtitle="11 avril – 2 juin 2023 chez Orange Business, France"
+    >
+      Développement du <strong>front end</strong> d'une application web dédiée à la
+      <strong>gestion des versions de traduction</strong> avec <strong>Vue.js</strong>,
+      ainsi que mise en place de <strong>test unitaire</strong>. Utilisation de
+      <strong>Git</strong> et <strong>Azure DevOps</strong> dans un environnement
+      professionnel.
+      <br />
+      → Une <strong>proposition d'alternance</strong> m'a été faite à l'issue du stage,
+      mais j'ai choisi de poursuivre mes études afin de me spécialiser en
+      <strong>Data Science</strong>. Le projet final a depuis été
+      <strong>déployé et est actuellement utilisé</strong> pour plusieurs produits
+      de l'entreprise.
     </TimeLineElement>
   </div>
 
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Certifications</div>
+    <div class="text-3xl w-full font-bold">Compétences</div>
   </div>
 
-  <ul class="list-disc mx-6 mb-10 grid gap-2">
-    <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
-    </li>
-    <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
-    </li>
-  </ul>
+  <div class="mb-10 grid md:grid-cols-2 gap-6">
+    <div>
+      <h3 class="font-bold mb-2">AI & Machine Learning</h3>
+      <ul class="list-disc mx-6">
+        <li><strong>Natural Language Processing:</strong> text classification, embeddings</li>
+        <li><strong>Computer Vision:</strong> object detection, image classification</li>
+        <li><strong>Models:</strong> BERT, Transformers, CNNs, ResNet</li>
+        <li><strong>Frameworks:</strong> PyTorch, TensorFlow, Hugging Face</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-2">Mathématiques appliquées & Statistiques</h3>
+      <ul class="list-disc mx-6">
+        <li>
+          <strong>Probability & Optimization:</strong> Markov chain Monte Carlo,
+          Bayesian inference, gradient descent
+        </li>
+        <li>
+          <strong>Machine Learning Theory:</strong> bias-variance trade-off,
+          regularization, overfitting
+        </li>
+        <li>
+          <strong>Data Analysis:</strong> statistics, PCA, clustering
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-2">Compétences techniques</h3>
+      <ul class="list-disc mx-6">
+        <li><strong>SQL</strong></li>
+        <li><strong>Git</strong></li>
+        <li><strong>Azure DevOps</strong></li>
+        <li><strong>Agile methodologies</strong></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-2">Langues</h3>
+      <ul class="list-disc mx-6">
+        <li>Français — Langue maternelle</li>
+        <li>Anglais — Courant</li>
+      </ul>
+    </div>
+  </div>
 
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Skills</div>
+    <div class="text-3xl w-full font-bold">Centres d'intérêt</div>
   </div>
 
-  <ul class="list-disc md:columns-5 columns-2 mx-6">
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
+  <ul class="list-disc mx-6 mb-10">
+    <li>Escalade</li>
+    <li>Jazz</li>
+    <li>Cuisine</li>
   </ul>
 </BaseLayout>
