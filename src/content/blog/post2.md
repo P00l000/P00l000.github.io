@@ -1,16 +1,66 @@
 ---
-title: "Demo Post 2"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-pubDate: "Sep 11 2022"
-heroImage: "/post_img.webp"
+title: "Implementation of DETR for People Counting"
+description: "How I implemented a Transformer-based object detector to count people in indoor environments, evaluated its robustness across rooms, and explored improvements inspired by Anchor DETR."
+pubDate: "Sep 15 2026"
+heroImage: "/blog_img/frontDETRInternship.png"
+tags: ["computer vision", "deep learning", "internship"]
 ---
+## Contexte
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+During my internship, I worked on a computer vision project aiming to automatically count people in indoor environments.
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+The broader objective was to link room occupancy with CO₂ measurements. A camera-based system could automatically provide the number of people present, avoiding manual annotation.
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
+My work focused on implementing **DETR (DEtection TRansformer)** and studying improvements to the original architecture.
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id cursus metus aliquam eleifend mi.
+## Objective
 
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+The main objective was to develop a people detection model that could:
+
+- detect people in indoor images,
+- count the number of people present,
+- generalize to rooms that were not used during training.
+
+I also studied improvements to DETR, particularly **Anchor DETR** and **RCDA**, and investigated **Deformable DETR**.
+
+
+
+## Dataset
+
+The dataset was collected by the team using **Raspberry Pi cameras** installed in working rooms.
+
+Images were captured every ten seconds, with images kept when the scene changed. Data was collected from **six different rooms** and annotated using **CVAT**.
+
+Because the dataset was relatively small, an important part of the evaluation was testing the model on a room that was not used for training.
+
+## Proposed solution
+
+I first implemented the original **DETR** architecture, which combines a CNN backbone with a Transformer encoder-decoder.
+
+A pretrained DETR model was first evaluated directly on our images, then fine-tuned on the collected dataset.
+
+I also experimented with **Anchor DETR**. Anchor points provide spatial information to the object queries and helped the model converge faster.
+
+Finally, I studied **RCDA (Row-Column Decoupled Attention)**, which reduces the computational cost of attention by processing the feature map along its rows and columns. I also investigated Deformable DETR, although its complete implementation was not finished during the internship.
+
+The publications describing these models were analyzed not only to make use of their architectures, but also to understand in detail how they work. A PyTorch project was then created to bring the various implementations together. Below is an example of a diagram I made showing how Deformable DETR works, other diagrams of this types as been made for the other architecture.
+![alt text](deformable_detr.png)
+
+## Result
+
+The pretrained DETR model performed poorly on our images, mainly because of the specific camera angle and environment.
+
+Fine-tuning significantly improved the detection of people. However, some false positives remained, particularly with objects such as chairs, while occluded people or people at the edge of the image were sometimes missed.
+
+The experiments also showed that **room-specific training greatly improves performance**. This highlights the importance of testing on unseen rooms when evaluating the model's real-world generalization.
+Below, we can see the difference in precision and the confusion matrices when the model is evaluated on a known room (experiment 3) and on a room it has never seen (experiment 2). Classification errors (except for difficult cases) correspond to information the model has never seen.
+![RESULTM1](result_M1_internship.png)
+The experiments with Anchor DETR showed faster and more stable convergence than the standard DETR. RCDA alone was less effective, while combining RCDA with anchor points gave more promising results.
+
+## Conslusion and future work
+
+This internship allowed me to implement and study Transformer-based object detection with DETR in a real-world environment.
+
+The main challenge was the limited generalization between different rooms. A larger and more diverse dataset would help reduce this bias.
+
+Future work could include evaluating newer DETR-based models such as **RT-DETR**, completing the Deformable DETR implementation, improving temporal stability of the people count, and integrating the detector directly with the CO₂ monitoring system.
